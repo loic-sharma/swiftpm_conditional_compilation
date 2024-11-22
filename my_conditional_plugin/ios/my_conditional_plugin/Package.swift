@@ -2,6 +2,13 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import Foundation
+
+var swiftSettings: [SwiftSetting] = []
+
+if ProcessInfo.processInfo.environment["MY_CONDITIONAL_PLUGIN_SWITCH"] == "1" {
+    swiftSettings.append(.define("MY_CONDITIONAL_PLUGIN_SWITCH"))
+}
 
 let package = Package(
     name: "my_conditional_plugin",
@@ -26,7 +33,8 @@ let package = Package(
                 // If you have other resources that need to be bundled with your plugin, refer to
                 // the following instructions to add them:
                 // https://developer.apple.com/documentation/xcode/bundling-resources-with-a-swift-package
-            ]
+            ],
+            swiftSettings: swiftSettings
         )
     ]
 )

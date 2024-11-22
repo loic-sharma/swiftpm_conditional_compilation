@@ -11,7 +11,11 @@ public class MyConditionalPlugin: NSObject, FlutterPlugin {
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
     case "getMessage":
-      result("Hello world")
+      #if MY_CONDITIONAL_PLUGIN_SWITCH
+      result("Switch on")
+      #else
+      result("Switch off")
+      #endif
     default:
       result(FlutterMethodNotImplemented)
     }
